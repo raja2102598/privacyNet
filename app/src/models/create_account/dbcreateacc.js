@@ -1,5 +1,7 @@
-var conn = require("../../../db/dbconn")
-var dblogin = require("../login/dblogin")
+var path = require("path")
+
+var conn = require(path.join(__dirname, "../../../db/dbconn"))
+var dblogin = require(path.join(__dirname, "../login/dblogin"))
 
 const generateUniqueId = require("generate-unique-id")
 var moment = require("moment")

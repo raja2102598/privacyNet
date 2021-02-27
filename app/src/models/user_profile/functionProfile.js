@@ -1,4 +1,6 @@
-var dbconn = require("./dbProfile")
+var path = require("path")
+
+var dbconn = require(path.join(__dirname, "./dbProfile"))
 
 function createNewProfile(req, res) {
   var user = req.body

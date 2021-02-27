@@ -1,6 +1,8 @@
 var mysql = require("mysql")
 
-var dbcon = require("../../config/dbconfig")
+var path = require("path")
+
+var dbcon = require(path.join(__dirname, "../../config/dbconfig"))
 
 var conn = mysql.createConnection({
   host: dbcon.HOST,

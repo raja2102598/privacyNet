@@ -1,4 +1,6 @@
-var dbconn = require("./dblogin")
+var path = require("path")
+
+var dbconn = require(path.join(__dirname, "./dblogin"))
 
 function logMeIn(req, res) {
   var user = req.body

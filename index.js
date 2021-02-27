@@ -2,11 +2,22 @@ var express = require("express")
 
 var body_parser = require("body-parser")
 
+var path = require("path")
 var app = express()
 
-var login = require("./app/src/models/login/functionlogin")
-var createAcc = require("./app/src/models/create_account/functioncreateacc")
-var profile = require("./app/src/models/user_profile/functionProfile")
+
+var login = require(path.join(
+  __dirname,
+  "./app/src/models/login/functionlogin"
+))
+var createAcc = require(path.join(
+  __dirname,
+  "./app/src/models/create_account/functioncreateacc"
+))
+var profile = require(path.join(
+  __dirname,
+  "./app/src/models/user_profile/functionProfile"
+))
 
 app.use(body_parser.json())
 app.use(body_parser.urlencoded({ extended: true }))

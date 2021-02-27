@@ -1,6 +1,8 @@
-var conn = require("../../../db/dbconn")
+var path = require("path")
 
-var dblogin = require("../login/dblogin")
+var conn = require(path.join(__dirname, "../../../db/dbconn"))
+
+var dblogin = require(path.join(__dirname, "../login/dblogin"))
 
 function createNewUserProfile(input, callback) {
   viewlog = dblogdata(input)
