@@ -22,6 +22,10 @@ var profile = require(path.join(
 app.use(body_parser.json())
 app.use(body_parser.urlencoded({ extended: true }))
 
+app.get("/", (req, res) => {
+  res.send("hello")
+})
+
 app.post("/createAcc", createAcc.createNewAccount)
 
 app.post("/login", login.logMeIn)
