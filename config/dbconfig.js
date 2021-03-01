@@ -1,5 +1,5 @@
 module.exports = {
-  HOST: "localhost",
+  HOST: "remotemysql.com",
   USERNAME: "aHenGQelbb",
   PASSWORD: "KTyw3LhbaF",
   DATABASE: "aHenGQelbb",
