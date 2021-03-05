@@ -33,7 +33,7 @@ function Login(input, callback) {
       console.log(err)
     } else if (results) {
       // getUserId(["raja@gmail.com"], (err, res) => {
-      // console.log(res)
+      console.log(results)
       // })
       callback(null, results)
     } else {
