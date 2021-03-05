@@ -1,6 +1,7 @@
 const { response } = require("express")
 var path = require("path")
 
+
 var dbconn = require(path.join(__dirname, "./dbcreateacc"))
 
 //firstname,lastname,email,password,uid(automatic)
@@ -10,7 +11,6 @@ function createNewAccount(req, res) {
       if (err) {
         // console.log(err.code)
         console.log(err)
-       
       } else {
         // console.log(result)
         // responseMsg = {}

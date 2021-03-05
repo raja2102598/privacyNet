@@ -1,6 +1,6 @@
 var express = require("express")
 
-var body_parser = require("body-parser")
+var bodyParser = require("body-parser")
 const cors = require("cors")
 
 
@@ -19,8 +19,8 @@ var profile = require(path.join(
   __dirname,
   "./app/src/models/user_profile/functionProfile"
 ))
-app.use(body_parser.json())
-app.use(body_parser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cors())
 

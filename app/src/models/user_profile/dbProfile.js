@@ -3,6 +3,8 @@ var path = require("path")
 var conn = require(path.join(__dirname, "../../../db/dbconn"))
 
 var dblogin = require(path.join(__dirname, "../login/dblogin"))
+var crypto = require(path.join(__dirname, "../../helpers/crypto"))
+
 
 function createNewUserProfile(input, callback) {
   viewlog = dblogdata(input)
@@ -30,12 +32,12 @@ function createNewUserProfile(input, callback) {
 
 function dblogdata(dblog) {
   uilog = {}
-  uilog.u_gender = dblog.gender
+  uilog.u_gender = crypto.encrypt(dblog.gender)
   uilog.u_dob = dblog.dob
-  uilog.u_city = dblog.city
-  uilog.u_hobby = dblog.hobby
-  uilog.u_bio = dblog.bio
-  uilog.u_interests = dblog.interests
+  uilog.u_city = crypto.encrypt(dblog.city)
+  uilog.u_hobby = crypto.encrypt(dblog.hobby)
+  uilog.u_bio = crypto.encrypt(dblog.bio)
+  uilog.u_interests = crypto.encrypt(dblog.interests)
   uilog.u_email = dblog.email
   console.log(uilog)
   return uilog
