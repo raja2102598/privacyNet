@@ -4,6 +4,7 @@ var dbconn = require(path.join(__dirname, "./dblogin"))
 
 function logMeIn(req, res) {
   var user = req.body
+  console.log(user)
   dbconn.Login(user, (err, result) => {
     if (err) {
       console.log(err)
@@ -17,6 +18,7 @@ function logMeIn(req, res) {
     }
   })
 }
+
 
 function updateUserNameDetails(req, res) {
   dbconn.getUserId([req.body.email], (err, resul) => {
