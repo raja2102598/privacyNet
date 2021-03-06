@@ -30,6 +30,36 @@ function createNewUserProfile(input, callback) {
   })
 }
 
+function getUserProfile(input, callback) {
+  console.log(input.user)
+  conn.query(
+    "select * from user_profile where user_id=?",
+    input.user,
+    (err, results) => {
+      if (err) {
+        console.log(err)
+      } else if (results) {
+        if (results.length > 0) {
+          results = uilogdata(results[0])
+          results.status = "Success"
+          // console.log(results)
+          callback(null, results)
+        } else {
+          responseMsg = {}
+          responseMsg.status = "Failed"
+          responseMsg.message = "No user Found"
+          callback(null, responseMsg)
+          // console.log(results)
+        }
+      } else {
+        conn.end()
+      }
+    }
+  )
+}
+
+
+
 function dblogdata(dblog) {
   uilog = {}
   uilog.u_gender = crypto.encrypt(dblog.gender)
@@ -43,8 +73,23 @@ function dblogdata(dblog) {
   return uilog
 }
 
+function uilogdata(dblog) {
+  uilog = {}
+  uilog.name = dblog.u_name
+  uilog.gender = dblog.u_gender
+  uilog.dob = dblog.u_dob
+  uilog.city = dblog.u_city
+  uilog.hobby = dblog.u_hobby
+  uilog.bio = dblog.u_bio
+  uilog.interests = dblog.u_interests
+  uilog.email = dblog.u_email
+  console.log(uilog)
+  return uilog
+}
+
 // SELECT *, YEAR(CURDATE()) - YEAR(u_dob) AS age FROM user_profile
 
 module.exports = {
   createNewUserProfile,
+  getUserProfile,
 }

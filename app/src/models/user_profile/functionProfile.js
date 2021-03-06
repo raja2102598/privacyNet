@@ -17,6 +17,19 @@ function createNewProfile(req, res) {
   })
 }
 
+function getProfile(req, res) {
+  console.log(req.query)
+  var user_id = req.query
+  dbconn.getUserProfile(user_id, (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(result)
+    }
+  })
+}
+
 module.exports = {
   createNewProfile,
+  getProfile,
 }

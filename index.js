@@ -36,6 +36,9 @@ app.put("/updateLogin", login.updateUserNameDetails)
 
 app.post("/addProfile", profile.createNewProfile)
 
+app.get("/getProfile", profile.getProfile)
+
+
 app.put("/updateUser", createAcc.updateUserDetails)
 
 app.listen(process.env.PORT || 5000, () => {
