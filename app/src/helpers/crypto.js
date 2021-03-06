@@ -1,12 +1,12 @@
 var CryptoJS = require("crypto-js")
 
 function decrypt(value) {
-  var bytes = CryptoJS.AES.decrypt(value, "finalyearproject2021")
+  var bytes = CryptoJS.AES.decrypt(value, process.env.SECRET_KEY)
   var originalText = bytes.toString(CryptoJS.enc.Utf8)
   return originalText
 }
 function encrypt(value) {
-  return CryptoJS.AES.encrypt(value, "finalyearproject2021").toString()
+  return CryptoJS.AES.encrypt(value, process.env.SECRET_KEY).toString()
 }
 
 module.exports = {
