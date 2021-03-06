@@ -2,7 +2,7 @@ var path = require("path")
 
 var axios = require("axios")
 var dbconn = require(path.join(__dirname, "./dblogin"))
-var CryptoJS = require("crypto-js")
+var CryptoJS = require(path.join(__dirname, "../../helpers/crypto"))
 var md5 = require("md5")
 
 
@@ -15,12 +15,14 @@ function logMeIn(req, res) {
     } else {
       // console.log(result)
       // Decrypt
-      var bytes = CryptoJS.AES.decrypt(
-        result[0].password,
-        "finalyearproject2021"
-      )
-      result[0].password = bytes.toString(CryptoJS.enc.Utf8)
-      
+      // var bytes = CryptoJS.AES.decrypt(
+      //   result[0].password,
+      //   process.env.SECRET_KEY
+      // )
+      // result[0].password = bytes.toString(CryptoJS.enc.Utf8)
+      // // console.log(result[0].password)
+      result[0].password = CryptoJS.decrypt(result[0].password)
+
       //Homomorphic Server Connection
       axios
         .post("http://127.0.0.1:4000/api/v1/login", {
@@ -31,29 +33,23 @@ function logMeIn(req, res) {
         .then(function (response) {
           // console.log(response.data)
           if (response.data.status == 0) {
-            
             responseMsg = {}
             responseMsg.status = "Success"
             responseMsg.message = "Logged In"
             responseMsg.user_id = result[0].login_id
-            
+
             res.send(responseMsg)
-          } 
-          else {
-            
+          } else {
             responseMsg = {}
             responseMsg.status = "Failed"
             responseMsg.message = "Email or Password Not Found"
-            
+
             res.send(responseMsg)
           }
         })
         .catch(function (error) {
-         
           console.log(error)
-        
         })
-
     }
   })
 }
