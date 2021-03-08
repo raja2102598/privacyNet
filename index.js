@@ -38,7 +38,7 @@ app.post("/login", login.logMeIn)
 
 app.put("/updateLogin", login.updateUserNameDetails)
 
-app.post("/addProfile", profile.createNewProfile)
+app.post("/updateProfile", profile.createNewProfile)
 
 app.get("/getProfile", profile.getProfile)
 

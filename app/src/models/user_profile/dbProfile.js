@@ -5,33 +5,78 @@ var conn = require(path.join(__dirname, "../../../db/dbconn"))
 var dblogin = require(path.join(__dirname, "../login/dblogin"))
 var crypto = require(path.join(__dirname, "../../helpers/crypto"))
 
-
 function createNewUserProfile(input, callback) {
-  viewlog = dblogdata(input)
+  console.log(input)
 
-  dblogin.getUserId([input.email], (err, res) => {
-    viewlog.user_id = res[0].u_id
-    viewlog.u_name = res[0].u_name
-    conn.query("insert into user_profile SET ?", viewlog, (err, results) => {
+  viewlog = dblogdata(input.savePerson)
+  conn.query(
+    "SELECT COUNT(*) AS cnt FROM user_profile WHERE user_id = ? ",
+    viewlog.user_id,
+    (err, result) => {
       if (err) {
         console.log(err)
-      } else if (results) {
-        dblogin.saveAge(
-          [viewlog.u_dob, viewlog.user_id, viewlog.u_gender, viewlog.u_city],
-          (err, resul) => {
-            console.log(resul)
-          }
-        )
-        callback(null, results)
       } else {
-        conn.end()
+        if (result[0].cnt > 0) {
+          conn.query(
+            
+            "update user_profile SET ? where user_id=?",
+       
+                [viewlog,viewlog.user_id],
+     
+                  (err, results) => {
+                if (err) {
+                  console.log(err)
+                } else if (results) {
+                  dblogin.saveAge(
+                    [
+                      viewlog.u_dob,
+                      viewlog.user_id,
+                      viewlog.u_gender,
+                      viewlog.u_city,
+                    ],
+                    (err, resul) => {
+                      console.log(resul)
+                    }
+                  )
+                  callback(null, results)
+                } else {
+                  conn.end()
+                }
+              }
+          
+          )
+        } else {
+          conn.query(
+            "insert into user_profile SET ?",
+            viewlog,
+            (err, results) => {
+              if (err) {
+                console.log(err)
+              } else if (results) {
+                dblogin.saveAge(
+                  [
+                    viewlog.u_dob,
+                    viewlog.user_id,
+                    viewlog.u_gender,
+                    viewlog.u_city,
+                  ],
+                  (err, resul) => {
+                    console.log(resul)
+                  }
+                )
+                callback(null, results)
+              } else {
+                conn.end()
+              }
+            }
+          )
+        }
       }
-    })
-  })
+    }
+  )
 }
 
 function getUserProfile(input, callback) {
-  console.log(input.user)
   conn.query(
     "select * from user_profile where user_id=?",
     input.user,
@@ -58,10 +103,10 @@ function getUserProfile(input, callback) {
   )
 }
 
-
-
 function dblogdata(dblog) {
   uilog = {}
+  uilog.u_name = dblog.name
+  uilog.u_email = dblog.email
   uilog.u_gender = crypto.encrypt(dblog.gender)
   uilog.u_dob = dblog.dob
   uilog.u_city = crypto.encrypt(dblog.city)
@@ -69,6 +114,7 @@ function dblogdata(dblog) {
   uilog.u_bio = crypto.encrypt(dblog.bio)
   uilog.u_interests = crypto.encrypt(dblog.interests)
   uilog.u_email = dblog.email
+  uilog.user_id = dblog.user_id
   console.log(uilog)
   return uilog
 }

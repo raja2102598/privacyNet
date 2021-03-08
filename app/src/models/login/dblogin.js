@@ -86,6 +86,7 @@ function saveAge(input, callback) {
 
   var dob = input[0]
   var age = getAge(input[0])
+  console.log(age, dob)
   var u_id = input[1]
   var gender = input[2]
   var city = input[3]

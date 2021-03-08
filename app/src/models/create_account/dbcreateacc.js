@@ -46,8 +46,19 @@ function createNewAcc(input, callback) {
                 console.log(err)
               } else if (results) {
                   input.password = crypto.encrypt(input.password)
-                  // console.log(input.password);
-            
+
+                  var saveDatas = saveData(viewlog)
+                  conn.query(
+                    "insert into user_profile SET ?",
+                    saveDatas,
+                    (errr, resultss) => {
+                      if (errr) {
+                        console.log(errr)
+                      } else if (resultss) {
+                        console.log(resultss)
+                      }
+                    }
+                  )
                   // Decrypt
                   // var bytes = CryptoJS.AES.decrypt(ciphertext, "secret key 123")
                   // var originalText = bytes.toString(CryptoJS.enc.Utf8)
@@ -104,6 +115,14 @@ function dblogdata(dblog) {
   uilog.u_email = dblog.email
   uilog.u_status = "true"
   return uilog
+}
+
+function saveData(inp) {
+  var data = {}
+  data.user_id = inp.u_id
+  data.u_name = inp.u_name
+  data.u_email = inp.u_email
+  return data
 }
 
 module.exports = {
