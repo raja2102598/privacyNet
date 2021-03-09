@@ -112,7 +112,7 @@ function dblogdata(dblog, userid) {
   uilog.u_bio = crypto.encrypt(dblog.bio)
   uilog.u_interests = crypto.encrypt(dblog.interests)
   uilog.u_email = dblog.email
-  uilog.user_pic_url  =  dblog.userpic
+  uilog.user_pic_url = dblog.pic_url
   uilog.user_id = userid
   console.log(uilog)
   return uilog
@@ -128,6 +128,7 @@ function uilogdata(dblog) {
   uilog.bio = dblog.u_bio
   uilog.interests = dblog.u_interests
   uilog.email = dblog.u_email
+  uilog.user_pic_url = dblog.user_pic_url
   console.log(uilog)
   return uilog
 }
