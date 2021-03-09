@@ -15,6 +15,7 @@ function getPostsUser(req, res) {
 
 function sendPostsUser(req, res) {
   var user = req.body
+  console.log(user)
   dbconn.getPosts(user, (err, result) => {
     if (err) {
       console.log(err)
