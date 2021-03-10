@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2021 at 03:13 PM
+-- Generation Time: Mar 09, 2021 at 06:14 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -53,9 +53,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`login_id`, `username`, `password`, `mail_id`) VALUES
-('glpuu696d6', '', 'U2FsdGVkX1/qaWFeMCLgbZFcwtcMY5WdFKuwMwdTuhQ=', 'test@gmail.com'),
-('jsnpeo81gp', '', 'U2FsdGVkX1+UCZ1p8BtSS7MBeXGKVlk4fcGb6aCVwrc=', 'rr2102598@gmail.com'),
-('z0bed6qdh3', '', 'U2FsdGVkX1818pJHZ0u/+wnHpsfgdI3iN0VnmWw1XlM=', 'rr210259@gmail.com');
+('j2uybfj7cu', '', 'U2FsdGVkX19Bka544n4jZVGVDqrhWxr0GG6OG9s4i/U=', 'sakthimallicyr@gmail.com'),
+('wf6z89f1jh', '', 'U2FsdGVkX19tyJMinx6z0w3+Y7yDUjkbFg+4DqVYanU=', 'test@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -126,9 +125,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`u_id`, `u_name`, `u_fname`, `u_lname`, `u_age`, `u_dob`, `u_gender`, `u_mobile`, `u_email`, `u_city`, `u_status`, `u_lastlogin`, `u_createdAt`) VALUES
-('glpuu696d6', 'Raja Jaisankar', 'Raja', 'Jaisankar', 20, '2000-05-02', 'U2FsdGVkX1/b426GR+8D23Z31Uwd6hU4ThHUg85bDT8=', '', 'test@gmail.com', 'U2FsdGVkX18fSwLacEq1qASmzbqHadEj3bmJ7Xv1OGM=', 'true', '2021-03-06 16:20:33.328784', '2021-03-06 16:20:33.000000'),
-('jsnpeo81gp', 'Raja Jaisankar', 'Raja', 'Jaisankar', 20, '2000-05-02', 'U2FsdGVkX19tUem2egFrJTJnkMasbu7IbwrEif79xCY=', '', 'rr2102598@gmail.com', 'U2FsdGVkX19ZpYgi+LcjtF+olr4qPFXN3Jh9LNY1CsE=', 'true', '2021-03-06 10:27:02.683941', '2021-03-06 10:27:02.000000'),
-('z0bed6qdh3', 'raja Ja', 'raja', 'Ja', 0, NULL, '', '', 'rr210259@gmail.com', '', 'true', '2021-03-06 10:34:51.581766', '2021-03-06 10:34:51.000000');
+('j2uybfj7cu', 'Sakthivel M', 'Sakthivel', 'M', 0, NULL, '', '', 'sakthimallicyr@gmail.com', '', 'true', '2021-03-09 06:30:43.571620', '2021-03-09 06:30:43.000000'),
+('wf6z89f1jh', 'Test 1', 'Test', '1', 20, '2000-05-21', 'U2FsdGVkX18K1mhhgpp/VXxDnEDQOM6agJszzKsDv0c=', '', 'test@gmail.com', 'U2FsdGVkX18UDXUi4rOSNi7IVmPOQ1RnUFbR+UlUIgo=', 'true', '2021-03-08 08:27:16.933538', '2021-03-08 08:27:16.000000');
 
 -- --------------------------------------------------------
 
@@ -139,6 +137,7 @@ INSERT INTO `users` (`u_id`, `u_name`, `u_fname`, `u_lname`, `u_age`, `u_dob`, `
 CREATE TABLE `user_profile` (
   `user_id` varchar(100) NOT NULL,
   `u_name` varchar(50) NOT NULL,
+  `user_pic_url` text NOT NULL,
   `u_gender` text NOT NULL,
   `u_dob` date NOT NULL,
   `u_city` text NOT NULL,
@@ -152,9 +151,9 @@ CREATE TABLE `user_profile` (
 -- Dumping data for table `user_profile`
 --
 
-INSERT INTO `user_profile` (`user_id`, `u_name`, `u_gender`, `u_dob`, `u_city`, `u_hobby`, `u_bio`, `u_interests`, `u_email`) VALUES
-('glpuu696d6', 'Raja Jaisankar', 'U2FsdGVkX1/b426GR+8D23Z31Uwd6hU4ThHUg85bDT8=', '2000-05-02', 'U2FsdGVkX18fSwLacEq1qASmzbqHadEj3bmJ7Xv1OGM=', 'U2FsdGVkX1+y5yI/dLPovoa8+hhO0Owvcbwy8sfQdr9YSzIN34/x2J7JVn3TH96XnCOV5VcycXBiD7H2h0B8DA==', 'U2FsdGVkX18wMWwQ/w3arp5SiBcQ7Cw0h7W1Iwwh72H+iQCqMjeIfZ/oJnlA4PSx', 'U2FsdGVkX18oLoaRecA9lJqlWMgPw1GIJMY9XaN6B5k=', 'test@gmail.com'),
-('jsnpeo81gp', 'Raja Jaisankar', 'U2FsdGVkX19tUem2egFrJTJnkMasbu7IbwrEif79xCY=', '2000-05-02', 'U2FsdGVkX19ZpYgi+LcjtF+olr4qPFXN3Jh9LNY1CsE=', 'U2FsdGVkX19I7gk1dlE+4uOLau8bihBMWgbLo1qkUYkAoKFuSqVPPq0rFpdCmgb9WrrjeMSXLQYbMn/0cxqeOQ==', 'U2FsdGVkX1/ZkOKGkbLG/GpcxGnmDWbgMVfGnrcufuphK5W8c7IAoz0evdOP25Fg', 'U2FsdGVkX19thJX/+yi+6DEm9qhmXFuWu25OuIeML3E=', 'rr2102598@gmail.com');
+INSERT INTO `user_profile` (`user_id`, `u_name`, `user_pic_url`, `u_gender`, `u_dob`, `u_city`, `u_hobby`, `u_bio`, `u_interests`, `u_email`) VALUES
+('j2uybfj7cu', 'Sakthivel M', 'https://firebasestorage.googleapis.com/v0/b/privacynet-faafb.appspot.com/o/images%2FCollegeIdCard.png?alt=media&token=590ab051-8aa2-400c-b20f-88a4e27cea3c', 'U2FsdGVkX19Do67c4OU5mDER0NAvVqeKnJLqrpTgn4s=', '0000-00-00', 'U2FsdGVkX19pHKoyQiNsfmEl441zo55uaucXf58wVP0=', 'U2FsdGVkX18cYM5722tRKlCNTCQ+GQHr+aZNHa2w3bg=', 'U2FsdGVkX1+LElSHWDtBox1+64FvFzeELDo/BTbK+ve9ZMXzKWulnLxHfkvl2GhC', 'U2FsdGVkX19A5735pzZDHPBMDqv2eOT+D0oJ1X5TT6o=', 'sakthimallicyr@gmail.com'),
+('wf6z89f1jh', 'Raja', 'https://firebasestorage.googleapis.com/v0/b/privacynet-faafb.appspot.com/o/images%2Fcrlogo.jpg?alt=media&token=b0a602af-7a19-4b90-a983-61ff63e49caa', 'U2FsdGVkX18K1mhhgpp/VXxDnEDQOM6agJszzKsDv0c=', '2000-05-21', 'U2FsdGVkX18UDXUi4rOSNi7IVmPOQ1RnUFbR+UlUIgo=', 'U2FsdGVkX183GcXEDSmb8h67w5SiSsPNi6WBa9YK/Zc=', 'U2FsdGVkX1+Rs5Kpj8UiNl9jWDDU80uNCpf5uLmmYyRevMVAw3NDpl6Y/PeLjolw', 'U2FsdGVkX1+OPP3aNn9FpbcVUNQN/KpF7OVbL+rS/ac=', 'test@gmail.com');
 
 --
 -- Indexes for dumped tables

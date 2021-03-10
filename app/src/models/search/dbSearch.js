@@ -6,8 +6,8 @@ var crypto = require(path.join(__dirname, "../../helpers/crypto"))
 
 function searchUser(input, callback) {
   conn.query(
-    "select * from user_profile where u_name=?",
-    input.name,
+    "select * from user_profile where u_name like ?",
+    "%" + input.name + "%",
     (err, results) => {
       if (err) {
         console.log(err)
