@@ -4,7 +4,8 @@ var conn = require(path.join(__dirname, "../../../db/dbconn"))
 
 var crypto = require(path.join(__dirname, "../../helpers/crypto"))
 
-function searchUser(input, callback) {
+function searchUserName(input, callback) {
+  console.log(input)
   conn.query(
     "select * from user_profile where u_name like ?",
     "%" + input.name + "%",
@@ -13,16 +14,13 @@ function searchUser(input, callback) {
         console.log(err)
       } else if (results) {
         if (results.length > 0) {
-          results = uilogdata(results[0])
-          results.status = "Success"
-          // console.log(results)
           callback(null, results)
         } else {
           responseMsg = {}
           responseMsg.status = "Failed"
           responseMsg.message = "No user Found"
           callback(null, responseMsg)
-          // console.log(results)
+          console.log(results)
         }
       } else {
         conn.end()
@@ -48,4 +46,6 @@ function uilogdata(dblog) {
 
 // SELECT *, YEAR(CURDATE()) - YEAR(u_dob) AS age FROM user_profile
 
-module.exports = {}
+module.exports = {
+  searchUserName,
+}

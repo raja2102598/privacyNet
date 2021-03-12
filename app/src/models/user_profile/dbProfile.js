@@ -102,11 +102,14 @@ function getUserProfile(input, callback) {
 }
 
 function dblogdata(dblog, userid) {
+  const getAge = (birthDate) =>
+    Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e10)
   uilog = {}
   uilog.u_name = dblog.name
   uilog.u_email = dblog.email
   uilog.u_gender = crypto.encrypt(dblog.gender)
   uilog.u_dob = dblog.dob
+  uilog.u_age = getAge(dblog.dob)
   uilog.u_city = crypto.encrypt(dblog.city)
   uilog.u_hobby = crypto.encrypt(dblog.hobby)
   uilog.u_bio = crypto.encrypt(dblog.bio)
