@@ -37,13 +37,11 @@ function logMeIn(req, res) {
             responseMsg.status = "Success"
             responseMsg.message = "Logged In"
             responseMsg.user_id = result[0].login_id
-
             res.send(responseMsg)
           } else {
             responseMsg = {}
             responseMsg.status = "Failed"
             responseMsg.message = "Email or Password Not Found"
-
             res.send(responseMsg)
           }
         })
